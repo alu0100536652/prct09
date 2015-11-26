@@ -18,10 +18,32 @@ describe "Module List" do
             date="July 20, 2015"
             @ref1 = List::Bibliography.new(title, authors, editorial, date)
             
+            authors=['Dave Thomas']
+            title="Programming JavaScript"
+            editorial="W3School"
+            date="July 20, 2016"
+            @ref2 = List::Bibliography.new(title, authors, editorial, date)
+            
+            authors=['Dave Thomas']
+            title="Programming JavaScript"
+            editorial="W3School"
+            date="July 20, 2017"
+            @ref3 = List::Bibliography.new(title, authors, editorial, date)
+            
             @list = List::List.new
             @list2 = List::List.new
             @list2.add(@ref)
             @list2.add(@ref1)
+            
+            @list3 = List::List.new
+            @list3.add(@ref2)
+            @list3.add(@ref1)
+            @list3.add(@ref3)
+            
+            @list4 = List::List.new
+            @list4.add(@ref1)
+            @list4.add(@ref2)
+            @list4.add(@ref3)
         end
     
         it "Debemos obtener la cabeza de la lista" do
@@ -67,6 +89,19 @@ describe "Module List" do
             @list2.clear()
             expect(@list2.length).to eq(0)
         end
+        
+        it "Max" do
+            expect(@list3.max).to eq(@ref3)
+        end
+        
+        it "Min" do
+            expect(@list3.min).to eq(@ref1)
+        end
+        
+        it "Sort" do
+            expect(@list3.sort).to eq(@list4.sort)
+        end
+        
     end
     
     

@@ -3,9 +3,22 @@ module List
     class List
         attr_reader :head, :length, :tail
         Node = Struct.new(:value, :next, :prev)
+        include Enumerable
         
         def initialize
             @length = 0
+        end
+        
+        def each
+            #yield @head.value
+            temp = @head
+            counter = 0
+            while counter < length do
+                yield temp.value
+                temp = temp.next
+                counter += 1
+            end
+            
         end
         
         def add(valueToAdd)
@@ -43,7 +56,7 @@ module List
             temp = @head
             counter = 0
             while counter < index do
-                temp = temp.net
+                temp = temp.next
                 counter += 1
             end
             temp.value
