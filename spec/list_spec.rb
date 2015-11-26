@@ -78,6 +78,7 @@ describe "Module List" do
             @editorial="Pragamatic Book"
             @date="July 7, 2013"
             @ref = List::Bibliography.new(@title, @authors, @editorial, @date)
+            @ref1 = List::Bibliography.new(@title, @authors, @editorial, @date)
         end
     
         it "La bibliografia estandar debe tener un titulo" do
@@ -98,6 +99,29 @@ describe "Module List" do
         
         it "Bibliografia a cadena de texto" do
             expect(@ref.to_s).to eq("Dave Thomas, Andy Hunt, Chad Fowler\nProgramming Ruby 1.9 & 2.0: The Pragmatic Programmers’ Guide\nPragamatic Book;(July 7, 2013)")
+        end
+        
+        it " Comprobar que sean iguales dos bibliografias" do
+            expect(@ref <=> @ref1).to eq(0)
+        end
+        
+        it " Comprobar que una sea menor que otra bibliografia" do
+            authors=['Dave Thomas', 'Andy Hunt', 'Chad Fowler']
+            title="Programming Ruby 1.9 & 2.0: The Pragmatic Programmers’ Guide"
+            editorial="Pragamatic Book"
+            date="July 7, 2014"
+            ref3 = List::Bibliography.new(title, authors, editorial, date)
+            expect(@ref <=> ref3).to eq(-1)
+        end
+        
+        
+        it " Comprobar que una sea mayor que otra bibliografia" do
+            authors=['Dave Thomas', 'Andy Hunt']
+            title="Programming Ruby 1.9 & 2.0: The Pragmatic Programmers’ Guide"
+            editorial="Pragamatic Book"
+            date="July 7, 2013"
+            ref3 = List::Bibliography.new(title, authors, editorial, date)
+            expect(@ref <=> ref3).to eq(1)
         end
     
     end

@@ -77,6 +77,7 @@ module List
     
     class Bibliography
         attr_reader :author, :title, :editorial, :date
+        include Comparable
         
         def initialize(title,author, editorial, date)
             if author == nil || author == 0
@@ -98,6 +99,10 @@ module List
                 raise ArgumentError, 'Tiene que tener una fecha'
             end
             @date = date
+        end
+        
+        def <=>(value)
+            [@author, @title, @editorial, @date] <=> [value.author, value.title, value.editorial, value.date]
         end
         
         def to_s
